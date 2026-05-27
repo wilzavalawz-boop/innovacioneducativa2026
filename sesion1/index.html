@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenamiento Docente | Sesión 1 - Ecosistema de Aprendizaje UNITEC/CEUTEC</title>
+
+    <!-- Tipografía Institucional UNITEC: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --federal-blue: #06065C;
+            --pacific-cyan: #03AED2;
+            --vivid-sky-blue: #47C8FD;
+            --white: #FFFFFF;
+            --light-bg: #F8FAFC;
+            --text-gray: #4B5563;
+            --border-gray: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--federal-blue);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .diamond-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .diamond-cut {
+            clip-path: polygon(
+                0 0,
+                calc(100% - 28px) 0,
+                100% 28px,
+                100% 100%,
+                28px 100%,
+                0 calc(100% - 28px)
+            );
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        /* NAV */
+        .top-nav {
+            width: 100%;
+            background-color: var(--federal-blue);
+            border-bottom: 4px solid var(--pacific-cyan);
+            padding: 1.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+        }
+
+        .brand svg {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            line-height: 1;
+            text-transform: lowercase;
+        }
+
+        .nav-label {
+            color: var(--vivid-sky-blue);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: right;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            background-color: var(--federal-blue);
+            color: var(--white);
+            padding: clamp(4rem, 8vw, 7rem) 0;
+            border-bottom: 8px solid var(--pacific-cyan);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -120px;
+            right: -110px;
+            width: 360px;
+            height: 360px;
+            background-color: var(--vivid-sky-blue);
+            opacity: 0.10;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -140px;
+            left: -110px;
+            width: 300px;
+            height: 300px;
+            background-color: var(--pacific-cyan);
+            opacity: 0.10;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.55rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+        }
+
+        .tag-primary {
+            background-color: var(--vivid-sky-blue);
+            color: var(--federal-blue);
+        }
+
+        .tag-outline {
+            border: 2px solid var(--pacific-cyan);
+            color: var(--pacific-cyan);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 8vw, 6.8rem);
+            line-height: 0.95;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 span {
+            color: var(--pacific-cyan);
+        }
+
+        .hero h2 {
+            display: inline-block;
+            font-size: clamp(1.1rem, 3vw, 2rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 4px solid var(--vivid-sky-blue);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            max-width: 760px;
+            color: var(--vivid-sky-blue);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* MAIN */
+        main {
+            padding: clamp(3.5rem, 7vw, 5rem) 0;
+        }
+
+        .section-space {
+            margin-bottom: clamp(4rem, 8vw, 6rem);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 850px) {
+            .two-column {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .objective-card {
+            position: relative;
+        }
+
+        .objective-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: var(--federal-blue);
+            transform: translate(10px, 10px);
+            clip-path: polygon(
+                0 0,
+                calc(100% - 28px) 0,
+                100% 28px,
+                100% 100%,
+                28px 100%,
+                0 calc(100% - 28px)
+            );
+            z-index: 0;
+        }
+
+        .objective-card.secondary::before {
+            background-color: var(--pacific-cyan);
+        }
+
+        .objective-inner {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: clamp(1.75rem, 4vw, 2.5rem);
+            clip-path: polygon(
+                0 0,
+                calc(100% - 28px) 0,
+                100% 28px,
+                100% 100%,
+                28px 100%,
+                0 calc(100% - 28px)
+            );
+        }
+
+        .objective-main {
+            background-color: var(--pacific-cyan);
+            color: var(--federal-blue);
+        }
+
+        .objective-secondary {
+            background-color: var(--white);
+            border: 2px solid var(--federal-blue);
+        }
+
+        .card-heading {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-diamond {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .icon-light {
+            background-color: var(--white);
+            color: var(--pacific-cyan);
+        }
+
+        .icon-dark {
+            background-color: var(--federal-blue);
+            color: var(--vivid-sky-blue);
+        }
+
+        .card-heading h3 {
+            font-size: clamp(1.4rem, 3vw, 1.7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .objective-inner p {
+            font-size: 1.05rem;
+            font-weight: 500;
+            border-left: 4px solid var(--white);
+            padding-left: 1rem;
+        }
+
+        .objective-secondary p {
+            color: var(--text-gray);
+            border-left-color: var(--pacific-cyan);
+        }
+
+        .objective-secondary strong {
+            color: var(--federal-blue);
+            font-weight: 900;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            border-bottom: 2px solid var(--border-gray);
+            padding-bottom: 1.75rem;
+            margin-bottom: 2.75rem;
+        }
+
+        @media (min-width: 760px) {
+            .section-title {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .section-title-icon {
+            width: 64px;
+            height: 64px;
+            background-color: var(--federal-blue);
+            color: var(--white);
+            display: grid;
+            place-items: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-title p {
+            color: var(--pacific-cyan);
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* RESOURCES */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 760px) {
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1080px) {
+            .resources-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .resource-link {
+            position: relative;
+            text-decoration: none;
+            display: block;
+            min-height: 100%;
+        }
+
+        .resource-link::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: var(--pacific-cyan);
+            transform: translate(10px, 10px);
+            clip-path: polygon(
+                0 0,
+                calc(100% - 28px) 0,
+                100% 28px,
+                100% 100%,
+                28px 100%,
+                0 calc(100% - 28px)
+            );
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link.dark::before {
+            background-color: var(--federal-blue);
+        }
+
+        .resource-link.sky::before {
+            background-color: var(--vivid-sky-blue);
+        }
+
+        .resource-link:hover::before {
+            transform: translate(14px, 14px);
+        }
+
+        .resource-card {
+            position: relative;
+            z-index: 1;
+            min-height: 100%;
+            background-color: var(--white);
+            padding: 2rem;
+            border: 1px solid var(--border-gray);
+            clip-path: polygon(
+                0 0,
+                calc(100% - 28px) 0,
+                100% 28px,
+                100% 100%,
+                28px 100%,
+                0 calc(100% - 28px)
+            );
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-link:hover .resource-card {
+            transform: translate(-6px, -6px);
+        }
+
+        .resource-number {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.6rem;
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: var(--pacific-cyan);
+            opacity: 0.20;
+            line-height: 1;
+        }
+
+        .resource-icon {
+            color: var(--federal-blue);
+            font-size: 2.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .resource-card h3 {
+            color: var(--federal-blue);
+            font-size: 1.25rem;
+            font-weight: 900;
+            line-height: 1.15;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding-right: 2.25rem;
+        }
+
+        .resource-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        .resource-action {
+            margin-top: 1.5rem;
+            color: var(--pacific-cyan);
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .dark .resource-action {
+            color: var(--federal-blue);
+        }
+
+        .sky .resource-action {
+            color: var(--vivid-sky-blue);
+        }
+
+        /* ACTIVITY */
+        .activity-box {
+            background-color: var(--federal-blue);
+            color: var(--white);
+            padding: clamp(2rem, 5vw, 3rem);
+            border-left: 8px solid var(--pacific-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-box::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            right: -90px;
+            bottom: -90px;
+            background-color: var(--vivid-sky-blue);
+            opacity: 0.10;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .activity-box h2 {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .activity-box p {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            color: var(--vivid-sky-blue);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-list {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .activity-item {
+            background-color: transparent;
+            border: 2px solid var(--pacific-cyan);
+            padding: 1rem 1.25rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* NAV BUTTONS */
+        .bottom-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 4rem;
+        }
+
+        @media (min-width: 640px) {
+            .bottom-nav {
+                flex-direction: row;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 2px solid var(--federal-blue);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            color: var(--federal-blue);
+            background-color: var(--white);
+        }
+
+        .btn-primary {
+            color: var(--federal-blue);
+            background-color: var(--vivid-sky-blue);
+            border-color: var(--vivid-sky-blue);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--federal-blue);
+            color: var(--white);
+            padding: 3rem 0;
+            border-top: 8px solid var(--pacific-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::after {
+            content: "";
+            position: absolute;
+            right: -90px;
+            bottom: -90px;
+            width: 250px;
+            height: 250px;
+            background-color: var(--vivid-sky-blue);
+            opacity: 0.10;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .footer-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        @media (min-width: 760px) {
+            .footer-inner {
+                flex-direction: row;
+                text-align: right;
+            }
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-brand svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .footer-brand span {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-transform: lowercase;
+        }
+
+        .footer-title {
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+
+        .footer-subtitle {
+            color: var(--vivid-sky-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 620px) {
+            .nav-label {
+                display: none;
+            }
+
+            .hero-tags {
+                margin-bottom: 1.5rem;
+            }
+
+            .objective-card::before,
+            .resource-link::before {
+                transform: translate(6px, 6px);
+            }
+
+            .resource-link:hover .resource-card {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="container nav-inner">
+            <a href="../" class="brand" aria-label="Volver al inicio">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <polygon points="50,0 50,50 0,50" fill="#47C8FD" />
+                    <polygon points="50,0 100,50 50,50" fill="#03AED2" />
+                    <polygon points="0,50 50,50 50,100" fill="#03AED2" />
+                    <polygon points="100,50 50,50 50,100" fill="#47C8FD" />
+                </svg>
+                <span class="brand-name">unitec</span>
+            </a>
+
+            <div class="nav-label">
+                Ecosistema de Aprendizaje
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-tags">
+                <span class="tag tag-primary">Entrenamiento Docente</span>
+                <span class="tag tag-outline">Sesión 1</span>
+            </div>
+
+            <h1>
+                Ecosistema de <br>
+                <span>Aprendizaje</span>
+            </h1>
+
+            <h2>UNITEC / CEUTEC</h2>
+
+            <p>
+                En esta sesión conocerás la filosofía del Ecosistema de Aprendizaje, el nuevo paradigma educativo y el rol del docente en el diseño de experiencias centradas en el estudiante.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <section class="section-space two-column">
+
+                <article class="objective-card">
+                    <div class="objective-inner objective-main">
+                        <div class="card-heading">
+                            <div class="icon-diamond icon-light diamond-shape">◎</div>
+                            <h3>Objetivo General</h3>
+                        </div>
+                        <p>
+                            Fortalecer la práctica docente mediante herramientas conceptuales y metodológicas que permitan comprender, diseñar e implementar experiencias de aprendizaje alineadas con el Ecosistema UNITEC/CEUTEC.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="objective-card secondary">
+                    <div class="objective-inner objective-secondary">
+                        <div class="card-heading">
+                            <div class="icon-diamond icon-dark diamond-shape">◆</div>
+                            <h3>Objetivo de la Sesión</h3>
+                        </div>
+                        <p>
+                            Comprender la filosofía del Ecosistema de Aprendizaje, interiorizar el Retrato del Aprendiz y contrastar el modelo tradicional con el nuevo ecosistema, incorporando la metacognición <strong>Learning to Learn</strong> como eje de la experiencia docente.
+                        </p>
+                    </div>
+                </article>
+
+            </section>
+
+            <section class="section-space">
+                <div class="section-title">
+                    <div class="section-title-icon diamond-shape">1</div>
+                    <div>
+                        <h2>Recursos de la Sesión 1</h2>
+                        <p>Módulos interactivos y documentación para docentes</p>
+                    </div>
+                </div>
+
+                <div class="resources-grid">
+
+                    <a href="definicionaprendizaje.html" class="resource-link">
+                        <article class="resource-card">
+                            <span class="resource-number">01</span>
+                            <div class="resource-icon">▣</div>
+                            <h3>Definición del Aprendizaje</h3>
+                            <p>
+                                Explora cómo el Ecosistema de Aprendizaje redefine el acto de aprender más allá de la transmisión de contenidos.
+                            </p>
+                            <div class="resource-action">Ingresar al módulo →</div>
+                        </article>
+                    </a>
+
+                    <a href="retratounitec.html" class="resource-link dark">
+                        <article class="resource-card">
+                            <span class="resource-number">02</span>
+                            <div class="resource-icon">◈</div>
+                            <h3>Retrato del Aprendiz UNITEC</h3>
+                            <p>
+                                Conoce las capacidades humanas que se busca desarrollar en los estudiantes y cómo se reflejan en la cultura del aula.
+                            </p>
+                            <div class="resource-action">Ingresar al módulo →</div>
+                        </article>
+                    </a>
+
+                    <a href="transicion.html" class="resource-link sky">
+                        <article class="resource-card">
+                            <span class="resource-number">03</span>
+                            <div class="resource-icon">⇄</div>
+                            <h3>Transición hacia el Nuevo Paradigma</h3>
+                            <p>
+                                Analiza el paso del modelo tradicional hacia un ecosistema activo, conectado y centrado en el aprendizaje.
+                            </p>
+                            <div class="resource-action">Ingresar al módulo →</div>
+                        </article>
+                    </a>
+
+                    <a href="transformacion.html" class="resource-link">
+                        <article class="resource-card">
+                            <span class="resource-number">04</span>
+                            <div class="resource-icon">⬡</div>
+                            <h3>Ejemplo de Transformación</h3>
+                            <p>
+                                Revisa un caso aplicado que muestra cómo una actividad tradicional puede convertirse en una experiencia de desempeño auténtico.
+                            </p>
+                            <div class="resource-action">Ingresar al módulo →</div>
+                        </article>
+                    </a>
+
+                    <a href="piloto.html" class="resource-link dark">
+                        <article class="resource-card">
+                            <span class="resource-number">05</span>
+                            <div class="resource-icon">▲</div>
+                            <h3>Micropiloto de Implementación</h3>
+                            <p>
+                                Identifica una oportunidad concreta para probar el enfoque del Ecosistema de Aprendizaje dentro de tu asignatura.
+                            </p>
+                            <div class="resource-action">Ingresar al módulo →</div>
+                        </article>
+                    </a>
+
+                    <a href="herramientas.html" class="resource-link sky">
+                        <article class="resource-card">
+                            <span class="resource-number">06</span>
+                            <div class="resource-icon">✦</div>
+                            <h3>Herramientas Disponibles</h3>
+                            <p>
+                                Accede a formatos, guías y plantillas para apoyar la planificación, evaluación y retroalimentación docente.
+                            </p>
+                            <div class="resource-action">Ingresar al módulo →</div>
+                        </article>
+                    </a>
+
+                </div>
+            </section>
+
+            <section class="section-space activity-box">
+                <h2>Actividad de cierre docente</h2>
+                <p>
+                    Al finalizar esta sesión, reflexiona sobre cómo tu asignatura puede alinearse mejor con el Ecosistema de Aprendizaje UNITEC/CEUTEC.
+                </p>
+
+                <div class="activity-list">
+                    <div class="activity-item">
+                        1. Identifica una práctica tradicional que utilizas actualmente en clase.
+                    </div>
+                    <div class="activity-item">
+                        2. Describe cómo podrías transformarla en una experiencia más activa, auténtica y centrada en el estudiante.
+                    </div>
+                    <div class="activity-item">
+                        3. Define una acción pequeña que puedas implementar en tu próxima clase.
+                    </div>
+                </div>
+            </section>
+
+            <nav class="bottom-nav" aria-label="Navegación entre páginas">
+                <a href="../" class="btn btn-outline">← Volver al inicio</a>
+                <a href="../sesion2/" class="btn btn-primary">Continuar a sesión 2 →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <polygon points="50,0 50,50 0,50" fill="#47C8FD" />
+                    <polygon points="50,0 100,50 50,50" fill="#03AED2" />
+                    <polygon points="0,50 50,50 50,100" fill="#03AED2" />
+                    <polygon points="100,50 50,50 50,100" fill="#47C8FD" />
+                </svg>
+                <span>unitec</span>
+            </div>
+
+            <div>
+                <p class="footer-title">Entrenamiento Docente</p>
+                <p class="footer-subtitle">Sesión 1 | Ecosistema de Aprendizaje UNITEC/CEUTEC</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
