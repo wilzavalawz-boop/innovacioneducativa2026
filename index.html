@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenamiento Docente | Ecosistema UNITEC</title>
+
+    <!-- Tipografía oficial UNITEC: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta oficial UNITEC */
+            --federal-blue: #06065C;
+            --pacific-cyan: #03AED2;
+            --vivid-sky-blue: #47C8FD;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--federal-blue);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-geometry {
+            position: fixed;
+            top: -10vh;
+            right: -10vw;
+            width: 50vw;
+            height: 50vw;
+            background-color: var(--pacific-cyan);
+            opacity: 0.05;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-geometry-2 {
+            position: fixed;
+            bottom: -20vh;
+            left: -10vw;
+            width: 70vw;
+            height: 70vw;
+            background-color: var(--vivid-sky-blue);
+            opacity: 0.03;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid var(--pacific-cyan);
+            margin-bottom: 4rem;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .diamond-isotype {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logotype {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--white);
+        }
+
+        .hero {
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: var(--vivid-sky-blue);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 720px;
+            font-weight: 400;
+            color: var(--pacific-cyan);
+        }
+
+        .video-section {
+            margin-bottom: 5rem;
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .video-section {
+                grid-template-columns: 1fr 1.3fr;
+                gap: 4rem;
+            }
+        }
+
+        .video-text {
+            text-align: left;
+        }
+
+        .video-title {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        .video-title span {
+            color: var(--vivid-sky-blue);
+        }
+
+        .video-subtitle {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--pacific-cyan);
+            border-left: 4px solid var(--vivid-sky-blue);
+            padding-left: 1rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding: 20px 20px 20px 0;
+        }
+
+        .video-decorator {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 20px;
+            background-color: var(--vivid-sky-blue);
+            z-index: 0;
+            clip-path: polygon(25px 0, 100% 0, calc(100% - 25px) 100%, 0 100%);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            z-index: 1;
+            background-color: var(--federal-blue);
+            border: 4px solid var(--pacific-cyan);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .section-intro {
+            margin-bottom: 2rem;
+            max-width: 760px;
+        }
+
+        .section-intro h2 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-intro h2 span {
+            color: var(--vivid-sky-blue);
+        }
+
+        .section-intro p {
+            color: var(--pacific-cyan);
+            font-size: 1.05rem;
+        }
+
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .sessions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .session-card {
+            background-color: transparent;
+            border: 2px solid var(--pacific-cyan);
+            position: relative;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 320px;
+            clip-path: polygon(
+                0 0,
+                calc(100% - 30px) 0,
+                100% 30px,
+                100% 100%,
+                30px 100%,
+                0 calc(100% - 30px)
+            );
+        }
+
+        .session-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--pacific-cyan);
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .session-card:hover {
+            border-color: var(--vivid-sky-blue);
+        }
+
+        .session-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .session-number {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--vivid-sky-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .session-card:hover .session-number {
+            color: var(--federal-blue);
+        }
+
+        .session-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .session-card:hover .session-title {
+            color: var(--federal-blue);
+        }
+
+        .session-desc {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .session-card:hover .session-desc {
+            color: var(--federal-blue);
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background-color: var(--vivid-sky-blue);
+            color: var(--federal-blue);
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: max-content;
+            clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+        }
+
+        .session-card:hover .btn-link {
+            background-color: var(--federal-blue);
+            color: var(--white);
+        }
+
+        .btn-link:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            margin-top: 5rem;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: var(--pacific-cyan);
+            font-weight: 400;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            header {
+                padding-bottom: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .logotype {
+                font-size: 1.5rem;
+            }
+
+            .video-wrapper {
+                padding: 14px 14px 14px 0;
+            }
+
+            .session-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .btn-link {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-geometry"></div>
+    <div class="bg-geometry-2"></div>
+
+    <div class="container">
+
+        <header>
+            <div class="brand-logo">
+                <svg class="diamond-isotype" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Isotipo UNITEC">
+                    <polygon points="50,0 50,50 0,50" fill="#47C8FD" />
+                    <polygon points="50,0 100,50 50,50" fill="#03AED2" />
+                    <polygon points="0,50 50,50 50,100" fill="#03AED2" />
+                    <polygon points="100,50 50,50 50,100" fill="#47C8FD" />
+                </svg>
+                <div class="logotype">unitec</div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1>Entrenamiento <span>Docente</span></h1>
+            <p>
+                Ecosistema de Aprendizaje UNITEC/CEUTEC. Plataforma asincrónica diseñada para fortalecer la práctica docente, la planificación de experiencias de aprendizaje y la implementación de metodologías centradas en el estudiante.
+            </p>
+        </section>
+
+        <section class="video-section">
+            <div class="video-text">
+                <h2 class="video-title">
+                    ¿Qué es el <br>
+                    <span>Ecosistema</span> de Aprendizaje UNITEC/CEUTEC?
+                </h2>
+                <p class="video-subtitle">
+                    Este curso acompaña al docente en la aplicación del Ecosistema de Aprendizaje dentro del aula.
+                </p>
+            </div>
+
+            <div class="video-wrapper">
+                <div class="video-decorator"></div>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/WVr14XkPbEc?si=QfAMAlkJeeCoP3-D"
+                        title="Video introductorio del Ecosistema de Aprendizaje UNITEC/CEUTEC"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-intro">
+            <h2>Ruta de <span>aprendizaje</span></h2>
+            <p>
+                Explora cada módulo para comprender, diseñar y aplicar experiencias de aprendizaje alineadas con el modelo educativo UNITEC/CEUTEC.
+            </p>
+        </section>
+
+        <main class="sessions-grid">
+
+            <article class="session-card">
+                <div>
+                    <div class="session-number">Sesión 1</div>
+                    <h2 class="session-title">El Ecosistema de Aprendizaje y el Nuevo Paradigma</h2>
+                    <p class="session-desc">
+                        Comprende la filosofía del Ecosistema de Aprendizaje, el Retrato del Aprendiz y el rol docente en experiencias formativas centradas en el estudiante.
+                    </p>
+                </div>
+                <a href="https://capexfi25-30.netlify.app/ecosistemaunitec/sesion1/" target="_blank" class="btn-link">
+                    Ingresar al módulo
+                </a>
+            </article>
+
+            <article class="session-card">
+                <div>
+                    <div class="session-number">Sesión 2</div>
+                    <h2 class="session-title">Definiendo “El Porqué” y “El Qué”</h2>
+                    <p class="session-desc">
+                        Diseña el punto de partida de tu planificación docente mediante la deconstrucción del sílabo, la Gran Idea y las Preguntas de Encuadre.
+                    </p>
+                </div>
+                <a href="https://capexfi25-30.netlify.app/ecosistemaunitec/sesion2/" target="_blank" class="btn-link">
+                    Ingresar al módulo
+                </a>
+            </article>
+
+            <article class="session-card">
+                <div>
+                    <div class="session-number">Sesión 3</div>
+                    <h2 class="session-title">Construyendo “La Evidencia”</h2>
+                    <p class="session-desc">
+                        Aplica principios de evaluación auténtica, diseños GRASPS y retroalimentación S.T.A.R. para evidenciar el aprendizaje de tus estudiantes.
+                    </p>
+                </div>
+                <a href="https://capexfi25-30.netlify.app/ecosistemaunitec/sesion3/" target="_blank" class="btn-link">
+                    Ingresar al módulo
+                </a>
+            </article>
+
+            <article class="session-card">
+                <div>
+                    <div class="session-number">Sesión 4</div>
+                    <h2 class="session-title">Planificando “El Cómo”</h2>
+                    <p class="session-desc">
+                        Organiza secuencias de aprendizaje mediante Connect, Construct y Contribute, integrando estrategias para fortalecer el carácter en el aula.
+                    </p>
+                </div>
+                <a href="https://capexfi25-30.netlify.app/ecosistemaunitec/sesion4/" target="_blank" class="btn-link">
+                    Ingresar al módulo
+                </a>
+            </article>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Universidad Tecnológica Centroamericana. Entrenamiento Docente.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
